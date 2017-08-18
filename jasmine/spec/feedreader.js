@@ -25,31 +25,21 @@ $(function() {
         /* TODO:
          * 编写一个测试遍历 allFeeds 对象里面的所有的源来保证有链接字段而且链接不是空的。
          */
-         var feed,feedName,feedUrl;
+         var feedName,feedUrl;
          var re = new RegExp("[a-zA-z]+://[^\s]*");
 
-         beforeEach(function(){
-            for(var i=0;i<allFeeds.length;i++){
-            feed=allFeeds[i];
-            feedName=feed.name;
-            feedUrl=feed.url;
-         }
-         });
 
-         it('feed url are valid',function(){
-            expect(feedUrl).toBeDefined();
+         it('feed has a name with valid url',function(){
+            allFeeds.forEach(function(feed){
+                feedName=feed.name;
+                feedUrl=feed.url;
+
+                expect(feedUrl&&feedName).toBeDefined();
             expect(re.test(feedUrl)).toBe(true);
-            expect(feedUrl.length).not.toBe(0);
-         })
-
-         it('feed has a name',function(){
-            expect(feedName).toBeDefined();
+            expect(feedUrl.length&&feedName.length).not.toBe(0);
             expect(typeof feedName).toBe('string');
-            expect(feedName.length).not.toBe(0);
-         });
-        /* TODO:
-         * 编写一个测试遍历 allFeeds 对象里面的所有的源来保证有名字字段而且不是空的。
-         */
+            });
+         })
     });
 
 
@@ -59,15 +49,16 @@ $(function() {
             var testing=$('body').hasClass('menu-hidden');
             expect(testing).toBe(true);
         });
-    });
-        it('work',function(){
-            var menuIcon = $('.menu-icon-link');
-            menuIcon.click();
-            expect($('body').hasClass('menu-hidden')).toBe(false);
-            menuIcon.click();
-            expect($('body').hasClass('menu-hidden')).toBe(true);
+        it('should work when click',function(){
+        var menuIcon = $('.menu-icon-link');
+        menuIcon.click();
+        expect($('body').hasClass('menu-hidden')).toBe(false);
+        menuIcon.click();
+        expect($('body').hasClass('menu-hidden')).toBe(true);
 
+                });
         });
+
 
 
     describe('Initial Entries',function(){
@@ -88,17 +79,24 @@ $(function() {
 
     /* TODO: 写一个叫做 "New Feed Selection" 的测试用例 */
     describe('New Feed Selection',function(){
-        var title,newtitile;
+        var title,newtitle,feed,newfeed;
         beforeEach(function(done){
             loadFeed(0,function(){
-                title=$('.header-title');
+                title=$('.header-title').text();
+                feed=$('.feed').text();
+                console.log(title)
+                console.log(feed)
                 done();
             })
         });
         it('can change content',function(done){
-            loadFeed(Math.floor(Math.random()*allFeeds.length),function(){
-                newtitile=$('.header-title');
-                expect(newtitile).not.toBe(title);
+            loadFeed(Math.round(Math.random()*(allFeeds.length-1)),function(){
+                newtitle=$('.header-title').text();
+                newfeed=$('.feed').text();
+                console.log(newtitle)
+                console.log(newfeed)
+                expect(newfeed).not.toBe(feed);
+                expect(newtitle).not.toBe(title);
                 done();
             })
         });
