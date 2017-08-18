@@ -12,9 +12,11 @@
 - 下载jasmine
 - 在html中引用
 
-    ```<script src="lib/jasmine-2.2.0/jasmine.js"></script>
+    ```
+      <script src="lib/jasmine-2.2.0/jasmine.js"></script>
       <script src="lib/jasmine-2.2.0/jasmine-html.js"></script>
-      <script src="lib/jasmine-2.2.0/boot.js"></script>```
+      <script src="lib/jasmine-2.2.0/boot.js"></script>
+    ```
 
 - 导入检测文件`<script src="jasmine/spec/feedreader.js"></script>`
 - 保存，在本地浏览器打开
