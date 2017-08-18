@@ -4,7 +4,7 @@
 
 学会使用 Jasmine
 
-###如何完成这个项目
+### 如何完成这个项目
 
 
 4. 查看项目的 HTMl (**./index.html**), CSS (**./css/style.css**) 和 JavaScript (**./js/app.js**) 文件来对项目的工作原理有一个基本的了解。
